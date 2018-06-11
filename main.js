@@ -725,7 +725,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark\">\n  <a class=\"navbar-brand\" routerLink=\"/\">X-BLOG</a>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark\">\n  <a class=\"navbar-brand\" routerLink=\"/\">X-BLOG</a>\n  <ul class=\"navbar-nav ml-auto\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" href=\"https://github.com/xieziyu\">\n        <i class=\"fa-lg fab fa-github\"></i>\n      </a>\n    </li>\n  </ul>\n</nav>"
 
 /***/ }),
 
