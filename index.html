@@ -1,14 +1,201 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans" data-lang="zh">
 <head>
-  <meta charset="utf-8">
-  <title>X-Blog</title>
-  <base href="/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ziyu</title>
+<meta name="description" content="Ziyu (xieziyu). Engineer at Mediocre Company. Author of ngx-echarts, duetlens, better-review and angular2-draggable.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/avatar.jpg">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="styles.8c8189116a8e17f2679a.css"></head>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ziyu">
+<meta property="og:description" content="千里之行，始于足下。">
+<meta property="og:url" content="https://xieziyu.github.io/">
+<meta property="og:image" content="https://xieziyu.github.io/assets/img/avatar.jpg">
+
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/lxgw-wenkai-subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/main.css">
+
+<script>
+  // Resolve language before first paint so the page never flashes the wrong one.
+  // Chinese is the default for everyone; only a previous explicit choice overrides it.
+  (function () {
+    var lang = 'zh';
+    try {
+      var saved = localStorage.getItem('lang');
+      if (saved === 'zh' || saved === 'en') lang = saved;
+    } catch (e) {}
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+    document.documentElement.classList.add('js');
+  })();
+</script>
+</head>
 <body>
-  <blog-root></blog-root>
-<script type="text/javascript" src="runtime.a66f828dca56eeb90e02.js"></script><script type="text/javascript" src="polyfills.7a0e6866a34e280f48e7.js"></script><script type="text/javascript" src="scripts.6b96891977e3e0b7f8ea.js"></script><script type="text/javascript" src="main.ad66e8adbef49f6697c7.js"></script></body>
+
+<a class="skip" href="#work"><span class="l-en">Skip to the projects</span><span class="l-zh">跳到作品</span></a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <img src="assets/img/avatar.jpg" width="30" height="30" alt="" decoding="async">
+      <span>Ziyu</span>
+    </a>
+    <nav>
+      <a href="#work"><span class="l-en">Work</span><span class="l-zh">作品</span></a>
+      <a href="https://github.com/xieziyu" rel="me">GitHub</a>
+      <button type="button" id="lang-toggle" class="lang-toggle" aria-label="Switch language">
+        <span class="l-en">中文</span><span class="l-zh">EN</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="verse reveal" lang="zh-Hans">千里之行，始于足下</p>
+      <p class="verse-note reveal">
+        <span class="l-en">
+          <i>A journey of a thousand miles begins beneath one's feet.</i>
+          <span class="src">Laozi, Tao Te Ching</span>
+        </span>
+        <span class="l-zh"><span class="src">老子《道德经》</span></span>
+      </p>
+      <p class="lede reveal">
+        <span class="l-en">What arises, arises from the mind. Be at ease with what comes; hold on to nothing.</span>
+        <span class="l-zh" lang="zh-Hans">缘由心生随遇而安<br>身无挂碍一切随缘</span>
+      </p>
+      <p class="hero-cta reveal">
+        <a class="btn" href="#work"><span class="l-en">Look around</span><span class="l-zh">随便看看</span></a>
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <h2 class="sr-only" id="work">Projects</h2>
+    <div class="bento">
+
+      <a class="tile t-lead reveal" href="https://github.com/xieziyu/ngx-echarts">
+        <img class="mark" src="assets/img/logo-ngx-echarts.svg" width="52" height="56" alt="" loading="lazy">
+        <h3>ngx-echarts</h3>
+        <p>
+          <span class="l-en">An Angular directive for Apache ECharts. Declarative, reactive charts from a single attribute.</span>
+          <span class="l-zh">Apache ECharts 的 Angular 指令，一个属性就能声明出响应式图表。</span>
+        </p>
+        <div class="chart-slot">
+          <img src="assets/img/chart-ngx-echarts.png" width="1400" height="418"
+               alt="A bar chart rendered by ngx-echarts on its demo site" loading="lazy" decoding="async">
+        </div>
+        <p class="figure">1.08M</p>
+        <p class="figure-note">
+          <span class="l-en">npm installs last month</span>
+          <span class="l-zh">上月 npm 下载量</span>
+        </p>
+        <p class="meta">
+          <span><b>1,186</b> stars</span>
+          <span>TypeScript</span>
+          <span>MIT</span>
+        </p>
+      </a>
+
+      <a class="tile t-shot reveal" href="https://github.com/xieziyu/duetlens">
+        <div class="shot">
+          <img src="assets/img/shot-duetlens.jpg" width="1200" height="750"
+               alt="duetlens: asking an agent about a single line of a diff" loading="lazy" decoding="async">
+        </div>
+        <div class="body">
+          <div class="title-row">
+            <img class="mark" src="assets/img/logo-duetlens.png" width="22" height="22" alt="" loading="lazy">
+            <h3>duetlens</h3>
+          </div>
+          <p>
+            <span class="l-en">See what every change really does, with an agent.</span>
+            <span class="l-zh">和 agent 看透每一处改动。</span>
+          </p>
+          <p class="meta">
+            <span><b>46</b> stars</span>
+            <span>Electron</span>
+          </p>
+        </div>
+      </a>
+
+      <a class="tile t-shot reveal" href="https://github.com/xieziyu/better-review">
+        <div class="shot">
+          <img src="assets/img/shot-better-review.jpg" width="1200" height="740"
+               alt="better-review: files changed view with inline findings" loading="lazy" decoding="async">
+        </div>
+        <div class="body">
+          <div class="title-row">
+            <img class="mark" src="assets/img/logo-better-review.svg" width="22" height="22" alt="" loading="lazy">
+            <h3>better-review</h3>
+          </div>
+          <p>
+            <span class="l-en">Local-first PR review. Drives claude or codex, ships findings through gh.</span>
+            <span class="l-zh">本地优先的 PR review，驱动 claude 或 codex，用 gh 提交结论。</span>
+          </p>
+          <p class="meta">
+            <span><b>9</b> stars</span>
+            <span>Node</span>
+          </p>
+        </div>
+      </a>
+
+      <a class="tile t-wide reveal" href="https://github.com/xieziyu/angular2-draggable">
+        <div class="wide-top">
+          <div class="wide-left">
+            <img class="mark sm" src="assets/img/logo-angular2-draggable.svg" width="40" height="40" alt="" loading="lazy">
+            <h3>angular2-draggable</h3>
+            <p>
+              <span class="l-en">A directive that makes any element draggable and resizable. Archived.</span>
+              <span class="l-zh">让任意元素可拖拽、可缩放的指令。已归档。</span>
+            </p>
+          </div>
+          <div class="wide-right">
+            <p class="figure">109K</p>
+            <p class="figure-note">
+              <span class="l-en">npm / month</span>
+              <span class="l-zh">npm 月下载</span>
+            </p>
+          </div>
+        </div>
+        <p class="meta">
+          <span><b>293</b> stars</span>
+          <span>TypeScript</span>
+          <span>MIT</span>
+        </p>
+      </a>
+
+      <div class="tile t-me reveal">
+        <img class="face" src="assets/img/avatar.jpg" width="64" height="64" alt="Ziyu" loading="lazy">
+        <h3>Ziyu</h3>
+        <p>
+          <span class="l-en">Engineer at Mediocre Company, working on <span class="keep">小宇宙</span> and <span class="keep">即刻</span>.</span>
+          <span class="l-zh">Mediocre Company 工程师，做小宇宙和即刻。</span>
+        </p>
+        <p class="links">
+          <a href="https://mediocre.app/">mediocre.app</a>
+          <a href="https://github.com/xieziyu">github.com/xieziyu</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot">
+    <span>
+      <span class="l-en">No framework, no tracker, no bugs.</span>
+      <span class="l-zh">没有框架，没有埋点，没有 BUG</span>
+    </span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
 </html>

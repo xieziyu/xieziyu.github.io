@@ -1,0 +1,233 @@
+/* ---------- fonts ---------- */
+@font-face{
+  font-family:'Geist';
+  src:url('../fonts/geist-latin.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+/* LXGW WenKai (霞鹜文楷), SIL OFL 1.1, see LXGWWenKai-OFL.txt in this folder.
+   Subset to ONLY the characters in the hero: 千里之行始于足下 / 老子《道德经》/
+   缘由心生随遇而安身无挂碍一切随缘. Change that copy and the new characters will fall
+   through to the kai fallbacks below; regenerate the subset instead (see README). */
+@font-face{
+  font-family:'LXGW WenKai';
+  src:url('../fonts/lxgw-wenkai-subset.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
+  unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF;
+}
+@font-face{
+  font-family:'Geist Mono';
+  src:url('../fonts/geist-mono-latin.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* ---------- tokens ----------
+   Dark only, on purpose. `color-scheme: dark` also darkens form controls,
+   scrollbars and the like so nothing renders as a bright patch. */
+:root{
+  color-scheme:dark;
+
+  --bg:#0c0d0f;
+  --tile:#141619;
+  --tile-2:#191c20;
+  --line:#24282e;
+  --line-hi:#2f5a78;
+  --fg:#e6e9ec;
+  --dim:#8e979f;
+  /* One accent hue, two weights: the light tone is legible as text on the dark surface,
+     the deep tone is the only one that can carry white text as a filled button. */
+  --acc:#4fc3f7;
+  --acc-fill:#0f6cbd;
+  --on-acc:#ffffff;
+  --lead-glow:radial-gradient(120% 100% at 10% 0%,#16354f 0%,#141a20 55%,#131518 100%);
+  --shadow:0 24px 60px -34px rgba(0,0,0,.85);
+
+  /* one radius system: surfaces 14px, inset media 10px, interactive elements pill */
+  --r:14px;
+
+  --sans:'Geist',system-ui,-apple-system,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,'PingFang SC',monospace;
+  /* fallbacks stay in the kai family, so a character outside the subset degrades in style */
+  --serif-cjk:'LXGW WenKai','Kaiti SC',KaiTi,STKaiti,'Noto Serif SC',serif;
+}
+
+/* ---------- reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:15px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:2px solid var(--acc); outline-offset:3px; border-radius:4px}
+
+.wrap{max-width:1180px; margin:0 auto; padding:0 24px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute; left:-9999px; top:0; z-index:50}
+.skip:focus{left:16px; top:12px; background:var(--acc-fill); color:var(--on-acc); padding:8px 16px; border-radius:999px; font-size:14px; text-decoration:none}
+
+/* ---------- language switching ---------- */
+html[data-lang="en"] .l-zh{display:none}
+html[data-lang="zh"] .l-en{display:none}
+
+/* ---------- header ---------- */
+.site{
+  position:sticky; top:0; z-index:10;
+  background:color-mix(in srgb,var(--bg) 85%,transparent);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.bar{height:66px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.brand{display:flex; align-items:center; gap:11px; font-weight:600; letter-spacing:-.02em; text-decoration:none}
+.brand img{width:30px; height:30px; border-radius:50%}
+.bar nav{display:flex; align-items:center; gap:22px; font-size:14.5px}
+.bar nav a{color:var(--dim); text-decoration:none; transition:color .18s}
+.bar nav a:hover{color:var(--fg)}
+.lang-toggle{
+  font:inherit; font-size:13px; font-weight:500; cursor:pointer;
+  color:var(--dim); background:transparent;
+  border:1px solid var(--line); border-radius:999px; padding:4px 13px;
+  transition:color .18s, border-color .18s;
+}
+.lang-toggle:hover{color:var(--acc); border-color:var(--acc)}
+.lang-toggle:active{transform:scale(.97)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(72px,12vh,124px) 0 clamp(48px,7vh,72px)}
+.verse{
+  font-family:var(--serif-cjk);
+  font-size:clamp(34px,7.2vw,74px);
+  line-height:1.24; letter-spacing:.06em; font-weight:600;
+  margin:0;
+}
+.verse-note{margin-top:20px; max-width:52ch; font-size:16px; color:var(--dim)}
+.verse-note i{font-style:italic; line-height:1.5}
+.verse-note .src{
+  display:block; margin-top:8px;
+  font-family:var(--mono); font-size:12.5px; letter-spacing:.04em;
+}
+.lede{color:var(--dim); font-size:17px; max-width:50ch; margin-top:26px; text-wrap:pretty}
+/* the Chinese line is a couplet, not prose: same serif as the verse, its own two lines */
+html[data-lang="zh"] .lede{
+  max-width:none; font-family:var(--serif-cjk);
+  font-size:20px; letter-spacing:.1em; line-height:2; margin-top:22px;
+}
+.hero-cta{margin-top:34px}
+.btn{
+  display:inline-block; padding:11px 24px; border-radius:999px;
+  background:var(--acc-fill); color:var(--on-acc);
+  font-size:14.5px; font-weight:600; text-decoration:none;
+  transition:filter .18s, transform .12s;
+}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:scale(.98)}
+
+/* ---------- bento ---------- */
+.bento{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:24px 0 96px}
+.tile{
+  background:var(--tile); border:1px solid var(--line); border-radius:var(--r);
+  padding:26px 28px; display:flex; flex-direction:column;
+  text-decoration:none; overflow:hidden; position:relative;
+  transition:border-color .2s, transform .2s, box-shadow .2s;
+}
+a.tile:hover{border-color:var(--line-hi); transform:translateY(-2px); box-shadow:var(--shadow)}
+.tile h3{font-size:20px; font-weight:600; letter-spacing:-.02em}
+.tile p{color:var(--dim); font-size:14.5px; margin-top:10px}
+.tile .mark{width:52px; height:auto; margin-bottom:18px}
+.tile .mark.sm{width:40px; margin-bottom:14px}
+/* `.tile p` is (0,1,1); these overrides must match or beat it */
+.tile .meta{
+  margin-top:auto; padding-top:22px;
+  font-family:var(--mono); font-size:12.5px; color:var(--dim);
+  display:flex; gap:16px; flex-wrap:wrap;
+}
+.meta b{color:var(--fg); font-weight:500}
+.tile .figure{
+  font-family:var(--mono); font-weight:500; color:var(--acc);
+  letter-spacing:-.05em; line-height:1;
+}
+.tile .figure-note{font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-top:9px}
+
+.t-lead{grid-column:span 2; grid-row:span 2; min-height:400px; background:var(--lead-glow)}
+.t-lead h3{font-size:30px}
+.t-lead p{max-width:44ch; font-size:15.5px}
+/* the Chinese line is short enough to hold one line here; 44ch would strand its last glyph */
+html[data-lang="zh"] .t-lead p{max-width:34em}
+/* the chart claims the free space with a margin on both sides, so it centres between
+   the description above and the number block below */
+.chart-slot{margin-block:auto; padding-block:26px}
+.chart-slot img{
+  width:100%; height:auto; border-radius:10px; border:1px solid var(--line);
+}
+.t-lead .figure{font-size:clamp(44px,5.4vw,62px); margin-top:0}
+.t-lead .meta{margin-top:0; padding-top:26px}
+
+/* the screenshot already owns the top of these tiles, so their marks sit on the title line */
+.title-row{display:flex; align-items:center; gap:10px}
+.title-row .mark{width:24px; height:24px; margin:0; border-radius:6px}
+
+.t-shot{padding:0}
+.t-shot .shot{height:150px; overflow:hidden; border-bottom:1px solid var(--line); background:var(--tile-2)}
+.t-shot .shot img{width:100%; height:100%; object-fit:cover; object-position:top left}
+.t-shot .body{padding:22px 24px 24px; display:flex; flex-direction:column; flex:1}
+
+.t-wide{grid-column:span 2; background:var(--tile-2)}
+.wide-top{display:flex; justify-content:space-between; align-items:flex-end; gap:28px; flex-wrap:wrap}
+.wide-left p{max-width:46ch}
+.wide-right{text-align:right}
+.wide-right .figure{font-size:40px}
+
+/* product names must not break across lines the way CJK otherwise does */
+.keep{white-space:nowrap}
+.t-me .face{width:64px; height:64px; border-radius:50%; border:1px solid var(--line)}
+.t-me h3{margin-top:16px; font-size:18px}
+.t-me .links{
+  margin-top:auto; padding-top:22px; display:flex; flex-direction:column; gap:4px;
+  font-family:var(--mono); font-size:12.5px;
+}
+.t-me .links a{color:var(--acc); text-decoration:none}
+.t-me .links a:hover{text-decoration:underline}
+
+/* ---------- footer ---------- */
+.site-foot{border-top:1px solid var(--line)}
+/* padding-block only: this element also carries .wrap, whose inline padding must survive */
+.foot{
+  padding-block:26px 56px; font-family:var(--mono); font-size:12.5px; color:var(--dim);
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.foot a{color:var(--dim); text-decoration:none}
+.foot a:hover{color:var(--acc)}
+
+/* ---------- motion ---------- */
+/* gated on .js so the page is never blank when the script fails to run */
+.js .reveal{opacity:0; transform:translateY(18px)}
+.js .reveal.in{opacity:1; transform:none; transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1)}
+.js .hero .reveal.in{transition-delay:calc(var(--i,0) * 90ms)}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .bento{grid-template-columns:1fr; padding-bottom:72px}
+  .t-lead,.t-wide{grid-column:span 1; grid-row:span 1; min-height:0}
+  .t-lead h3{font-size:24px}
+  .wide-top{flex-direction:column; align-items:flex-start; gap:20px}
+  .wide-right{text-align:left}
+  .hero{padding-top:64px}
+  .lede{font-size:16px}
+}
+@media (max-width:520px){
+  .bar nav{gap:14px; font-size:13.5px}
+  .tile{padding:22px}
+  .t-shot{padding:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1; transform:none}
+  .js .reveal.in{transition:none}
+  *,*::before,*::after{animation-duration:.01ms !important; transition-duration:.01ms !important}
+}
